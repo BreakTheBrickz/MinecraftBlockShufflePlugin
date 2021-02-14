@@ -84,7 +84,9 @@ public class Sheduler extends BukkitRunnable {
 						
 					}else if(playerInfo.getScore() <= 11){
 						item = Blocks.getBlock3();
+						
 					}else item = Blocks.getBlock4();
+					
 					playerBlocks.put(current, item.getType());
 					current.getInventory().setItem(1,item);
 					playerInfo.setPlayerTime(Commands3.getRemainingTime());
@@ -112,8 +114,8 @@ public class Sheduler extends BukkitRunnable {
 		
 		if(winner != null && maxScore > 0) {
 			Bukkit.broadcastMessage(winner.getDisplayName() + " is the Winner with " + maxScore + " Points");
+			
 		}else Bukkit.broadcastMessage("Nobody has won");
-		
 		
 		playerInfos.clear();
 		playerBlocks.clear();

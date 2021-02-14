@@ -27,23 +27,26 @@ public class PlayerInfo {
 		return playerStatus;
 	}
 	
-	
 	public void setPlayerStatusIsOut() {
 		playerStatus = false;
 	}
 	
 	public void setPlayerTime(int t) {
-		remainingTime= t*4 ;
+		remainingTime = t*4 ;
 	}
+	
 	public int getScore() {
 		return score;
 	}
+	
 	public void increaseScore() {
 		score++;
 	}
+	
 	public void setItem(ItemStack item) {
 		this.item = item;
 	}
+	
 	public ItemStack getItem() {
 		return item;
 	}
