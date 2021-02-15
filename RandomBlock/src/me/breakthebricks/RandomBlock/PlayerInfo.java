@@ -10,6 +10,7 @@ public class PlayerInfo {
 	boolean playerStatus = true;
 	int score = 0;
 	ItemStack item;
+	boolean playerTestMode = false;
 	
 	public PlayerInfo(ItemStack item) {
 		this.item = item;
@@ -49,5 +50,12 @@ public class PlayerInfo {
 	
 	public ItemStack getItem() {
 		return item;
+	}
+	
+	public boolean getTestMode() {
+		return playerTestMode;
+	}
+	public void setTestMode(boolean mode) {
+		playerTestMode = mode;
 	}
 }

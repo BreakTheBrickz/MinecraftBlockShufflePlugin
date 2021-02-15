@@ -18,6 +18,7 @@ public class MainClass extends JavaPlugin {
 		getCommand("startshuffle").setExecutor(new Commands(playerBlocks, this, playerInfos,player));
 		getCommand("stopshuffle").setExecutor(new Commands2(playerBlocks, this, playerInfos,player));
 		getCommand("setPlayersTime").setExecutor(new Commands3());
+		getCommand("testmode").setExecutor(new Command4(playerInfos));
 		getServer().getPluginManager().registerEvents(new Events(this),this);
 		
 		Blocks b = new Blocks(blocks1,blocks2,blocks3,blocks4);

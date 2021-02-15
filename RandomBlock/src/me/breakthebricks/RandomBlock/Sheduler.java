@@ -27,9 +27,8 @@ public class Sheduler extends BukkitRunnable {
 		this.playerBlocks = playerBlocks;
 		this.playerInfos = playerInfos;
 		this.players = players;
-		System.out.println("shedular sucessfully initializiert");
 		this.scoreboard = scoreboard;
-		
+		System.out.println("shedular sucessfully initializiert");
 		
 	}
 	
@@ -66,37 +65,46 @@ public class Sheduler extends BukkitRunnable {
 		
 	}
 	
-	
 	public void checkBlockBelowPlayer(Player current, PlayerInfo playerInfo) {
 			Material m = current.getLocation().getBlock().getRelative(BlockFace.DOWN).getType();
 			if(playerBlocks.get(current).equals(m)) {
-				current.sendMessage("YOu did it");
+				current.sendMessage("You did it");
 				playerInfo.increaseScore();
 				current.getInventory().remove(playerInfo.getItem());
 				
-				ItemStack item;
+				ItemStack item = null;
+				item = assignBlock(item,playerInfo);
 				
-					if(playerInfo.getScore() <= 3) {
-						item = Blocks.getBlock1();
-						
-					}else if(playerInfo.getScore() <= 7) {
-						item = Blocks.getBlock2();
-						
-					}else if(playerInfo.getScore() <= 11){
-						item = Blocks.getBlock3();
-						
-					}else item = Blocks.getBlock4();
-					
-					playerBlocks.put(current, item.getType());
-					current.getInventory().setItem(1,item);
-					playerInfo.setPlayerTime(Commands3.getRemainingTime());
-					playerInfo.setItem(item);
-					
-					
+						if(item != null) {
+								playerBlocks.put(current, item.getType());
+								current.getInventory().setItem(1,item);
+								playerInfo.setPlayerTime(Commands3.getRemainingTime());
+								playerInfo.setItem(item);
+								
+						}else current.sendMessage("Invalid Score");
 			}
 	}
 	
-	public void checkWinner() {
+	private ItemStack assignBlock(ItemStack item, PlayerInfo playerInfo) {
+		
+		if(playerInfo.getScore() <= 7) {
+			item = Blocks.getBlock1();
+			Bukkit.broadcastMessage("getBLock1");
+		}else if(playerInfo.getScore() <= 13) {
+			item = Blocks.getBlock2();
+			Bukkit.broadcastMessage("getBLock2");
+		}else if(playerInfo.getScore() <= 19){
+			item = Blocks.getBlock3();
+			Bukkit.broadcastMessage("getBLock3");
+		}else if(playerInfo.getScore() > 19) {
+			item = Blocks.getBlock4();
+			Bukkit.broadcastMessage("getBLock4");
+		}
+		
+		return item;
+	}
+	
+	private void checkWinner() {
 		Player winner = null;
 		int maxScore = 0;
 		
@@ -115,11 +123,14 @@ public class Sheduler extends BukkitRunnable {
 		if(winner != null && maxScore > 0) {
 			Bukkit.broadcastMessage(winner.getDisplayName() + " is the Winner with " + maxScore + " Points");
 			
-		}else Bukkit.broadcastMessage("Nobody has won");
+		}else {
+			Bukkit.broadcastMessage("Nobody has won");
+		}
 		
 		playerInfos.clear();
 		playerBlocks.clear();
 		players.clear();
+		Commands.gameIsRunning = false;
 	}
 	
 }

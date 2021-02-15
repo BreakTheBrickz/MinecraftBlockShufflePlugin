@@ -17,25 +17,25 @@ public class Blocks {
 	
 	public Blocks(ArrayList<ItemStack> blocks1,ArrayList<ItemStack> blocks2,ArrayList<ItemStack> blocks3,ArrayList<ItemStack> blocks4) {
 		
-		Blocks.blocks1 = blocks1;
-		Blocks.blocks2 = blocks2;
-		Blocks.blocks3 = blocks3;
-		Blocks.blocks3 = blocks4;
+		this.blocks1 = blocks1;
+		this.blocks2 = blocks2;
+		this.blocks3 = blocks3;
+		this.blocks4 = blocks4;
 		
 		blocks1.add(new ItemStack(Material.BEDROCK));
 		blocks1.add(new ItemStack(Material.WHITE_WOOL));
 		blocks1.add(new ItemStack(Material.POLISHED_ANDESITE));
 		blocks1.add(new ItemStack(Material.POLISHED_DIORITE));
 		blocks1.add(new ItemStack(Material.POLISHED_GRANITE));
-		blocks1.add(new ItemStack(Material.STRIPPED_DARK_OAK_LOG));
-		blocks1.add(new ItemStack(Material.STRIPPED_DARK_OAK_WOOD));
+		blocks1.add(new ItemStack(Material.STRIPPED_SPRUCE_LOG));
+		blocks1.add(new ItemStack(Material.STRIPPED_SPRUCE_WOOD));
 		blocks1.add(new ItemStack(Material.SAND));
 		blocks1.add(new ItemStack(Material.SANDSTONE));
 		blocks1.add(new ItemStack(Material.GLASS));
 		blocks1.add(new ItemStack(Material.BRICKS));
 		blocks1.add(new ItemStack(Material.RED_CONCRETE));
 		blocks1.add(new ItemStack(Material.YELLOW_CONCRETE));
-		blocks1.add(new ItemStack(Material.DARK_OAK_LEAVES));
+		blocks1.add(new ItemStack(Material.SPRUCE_LEAVES));
 		blocks1.add(new ItemStack(Material.CHISELED_STONE_BRICKS));
 		blocks1.add(new ItemStack(Material.CLAY));
 		blocks1.add(new ItemStack(Material.GRINDSTONE));
@@ -47,7 +47,7 @@ public class Blocks {
 		blocks1.add(new ItemStack(Material.COAL_ORE));
 		blocks1.add(new ItemStack(Material.CAMPFIRE));
 		blocks1.add(new ItemStack(Material.FLETCHING_TABLE));
-		blocks1.add(new ItemStack(Material.LOOM));	
+		
 			
 			
 		
@@ -60,7 +60,6 @@ public class Blocks {
 		blocks2.add(new ItemStack(Material.IRON_ORE));
 		blocks2.add(new ItemStack(Material.LAPIS_ORE));
 		blocks2.add(new ItemStack(Material.REDSTONE_ORE));
-		blocks2.add(new ItemStack(Material.NETHERRACK));
 		blocks2.add(new ItemStack(Material.COAL_BLOCK));
 		blocks2.add(new ItemStack(Material.IRON_BLOCK));
 		blocks2.add(new ItemStack(Material.REDSTONE_BLOCK));
@@ -69,7 +68,6 @@ public class Blocks {
 		blocks2.add(new ItemStack(Material.SNOW_BLOCK));
 		blocks2.add(new ItemStack(Material.DROPPER));
 		blocks2.add(new ItemStack(Material.NOTE_BLOCK));
-		blocks2.add(new ItemStack(Material.PODZOL));
 		blocks2.add(new ItemStack(Material.SWEET_BERRY_BUSH));
 		blocks2.add(new ItemStack(Material.PISTON));
 		blocks2.add(new ItemStack(Material.OBSIDIAN));
@@ -85,11 +83,12 @@ public class Blocks {
 		blocks2.add(new ItemStack(Material.SMITHING_TABLE));
 		blocks2.add(new ItemStack(Material.CARTOGRAPHY_TABLE));
 		blocks2.add(new ItemStack(Material.CHAIN));
+		blocks2.add(new ItemStack(Material.LOOM));	
 		
 		
 		
 		
-		
+		blocks3.add(new ItemStack(Material.NETHERRACK));
 		blocks3.add(new ItemStack(Material.NETHER_BRICKS));
 		blocks3.add(new ItemStack(Material.NETHER_QUARTZ_ORE));
 		blocks3.add(new ItemStack(Material.BASALT));
@@ -128,10 +127,6 @@ public class Blocks {
 		blocks4.add(new ItemStack(Material.DIAMOND_BLOCK));
 		blocks4.add(new ItemStack(Material.SEA_PICKLE));
 		blocks4.add(new ItemStack(Material.PRISMARINE_BRICKS));
-		
-		
-
-
 
 
 	}
@@ -159,15 +154,16 @@ public class Blocks {
 	
 	public static ItemStack getBlock4() {
 		Collections.shuffle(blocks4);
-		ItemStack item = new ItemStack(blocks3.get(0));
+		ItemStack item = new ItemStack(blocks4.get(0));
 		return setMeta(item);
 		
 	}
 	
 	public static ItemStack setMeta(ItemStack item) {
 		
-		String s = item.getType().toString();
+		String s = item.getType().name().toString();
 		ItemMeta meta = item.getItemMeta();
+		//String s = meta.getDisplayName();
 		meta.setDisplayName(ChatColor.DARK_GREEN + s);
 		
 		item.setItemMeta(meta);

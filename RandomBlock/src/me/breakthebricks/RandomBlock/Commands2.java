@@ -34,6 +34,7 @@ public class Commands2 implements CommandExecutor{
 				Player p = (Player) sender;
 				if(p.isOp()) {
 					Sheduler.cancelRun = true;
+					Commands.gameIsRunning = false;
 					playerInfos.clear();
 					playerBlocks.clear();
 					players.clear();

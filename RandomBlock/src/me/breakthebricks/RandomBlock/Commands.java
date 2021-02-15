@@ -20,6 +20,7 @@ public class Commands implements CommandExecutor {
 	private final MainClass plugin;
 	HashMap<Player, PlayerInfo> playerInfos;
 	private ArrayList<Player> players;
+	public static boolean gameIsRunning = false;
 	
 	public Commands(HashMap<Player, Material> playerBlocks, MainClass plugin, HashMap<Player, PlayerInfo> playerInfos, ArrayList<Player> players) {
 		
@@ -37,25 +38,31 @@ public class Commands implements CommandExecutor {
 				if(sender instanceof Player) {
 					Player p = (Player) sender;
 					if(p.isOp()) {
-						Sheduler.cancelRun = false;
-						playerInfos.clear();
-						playerBlocks.clear();
-						players.clear();
-						Bukkit.broadcastMessage("Let the games begin");
-						for(Player current:Bukkit.getOnlinePlayers()) {
-							ItemStack item = Blocks.getBlock1();
-							playerBlocks.put(current, item.getType());
-							current.getInventory().setItem(1,item);
-							initializePlayerInfo(current,item);
-							players.add(current);
-						} 
+						if(!gameIsRunning) {
+							Sheduler.cancelRun = false;
+							gameIsRunning = true;
+							playerInfos.clear();
+							playerBlocks.clear();
+							players.clear();
+							Bukkit.broadcastMessage("Let the games begin");
+								for(Player current:Bukkit.getOnlinePlayers()) {
+									ItemStack item = Blocks.getBlock1();
+									playerBlocks.put(current, item.getType());
+									current.getInventory().setItem(1,item);
+									initializePlayerInfo(current,item);
+									players.add(current);
+								} 
+						
 						PlayerScoreboard scoreboard = new PlayerScoreboard();
 						BukkitTask task = new Sheduler(this.plugin, 5,playerBlocks,playerInfos,players,scoreboard).runTaskTimer(this.plugin, 0, 5);
 						return true;
-					}
-				} 
-			}
-			return false;
+						
+					}else p.sendMessage("Game already running");
+						
+				}
+			} 
+		}return false;
+			
 	}
 	
 		

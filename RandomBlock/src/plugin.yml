@@ -6,3 +6,4 @@ commands:
   startshuffle:
   stopshuffle:
   setPlayersTime:
+  Testmode:
