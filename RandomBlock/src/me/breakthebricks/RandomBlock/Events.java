@@ -95,7 +95,7 @@ public class Events implements Listener {
 	public void onRenameEvent(InventoryClickEvent event) {
 		
 		if(event.getInventory().getType() == InventoryType.ANVIL) {
-			event.setCancelled(true);
+			event.setCancelled(true);	
 		}
 		
 	}
